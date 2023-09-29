@@ -31,6 +31,8 @@
 
 [参考连接](https://www.tomlooman.com/unreal-engine-ufunction-specifiers/)
 
+#### BlueprintCallable,BlueprintPure的区别是什么？
+
 区别是BlueprintCallable有执行线，BlueprintPure没有。
 
 [![pPqSHM9.png](https://z1.ax1x.com/2023/09/29/pPqSHM9.png)](https://imgse.com/i/pPqSHM9)
@@ -42,9 +44,40 @@
 	UFUNCTION(BlueprintCallable)
 	void DestroyWeapon();
 ```
-BlueprintImplementableEvent只能在蓝图实现。与BlueprintImplementableEvent有区别的是，BlueprintNativeEvent可以在C++中写Native方法，C++ Native为后缀一般以_Implementation，并可以在蓝图中重写。
+#### BlueprintImplementableEvent有什么用？
+
+BlueprintImplementableEvent只能在蓝图实现，常常与BlueprintCallable相配合使用。
+
+#### BlueprintNativeEvent有什么用？
+
+与BlueprintImplementableEvent有区别的是，BlueprintNativeEvent可以在C++中写Native方法，C++ Native为后缀一般以_Implementation，并可以在蓝图中重写。
 
 详细参考见[Aura](https://github.com/Genius-pig/Aura)中的Source/Aura/Public/Iteraction/CombatInterface.h。
+
+### 3. 请简要阐述AnimBP的动画状态机和Montage
+  
+- 哪一个更适合用在做近战攻击?
+- 如果实现一个上下肢分离的换子弹动画(边跑步，边换弹)，应该怎么做？
+- 怎么创建根骨骼动画节点，以方便在代码里调用？
+- 简单阐述，Montage动画播完如何获取响应事件？
+
+#### 他们分别适用在什么情景？ 
+
+状态机更适用在动画过渡，比如从idle到跑步，Montage适合触发事件，Montage可以被分到不同的Slot里。Montage可以和GAS配合使用。Montage只有在AnimBP里有这个Slot和PlayMontage这两个同时存在才会播放动画。
+
+[![pPq9l1e.md.png](https://z1.ax1x.com/2023/09/29/pPq9l1e.md.png)](https://imgse.com/i/pPq9l1e)
+
+[![pPq967q.md.png](https://z1.ax1x.com/2023/09/29/pPq967q.md.png)](https://imgse.com/i/pPq967q)
+
+[![pPq92NV.png](https://z1.ax1x.com/2023/09/29/pPq92NV.png)](https://imgse.com/i/pPq92NV)
+
+
+#### 如果实现一个上下肢分离的换子弹动画(边跑步，边换弹)，应该怎么做？
+
+可以用Layered blend per bone
+
+[![pPqCpDA.png](https://z1.ax1x.com/2023/09/29/pPqCpDA.png)](https://imgse.com/i/pPqCpDA)
+
 
 
 

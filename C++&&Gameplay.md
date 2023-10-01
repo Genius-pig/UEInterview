@@ -55,7 +55,8 @@ BlueprintImplementableEvent只能在蓝图实现，常常与BlueprintCallable相
 详细参考见[Aura](https://github.com/Genius-pig/Aura)中的Source/Aura/Public/Iteraction/CombatInterface.h。
 
 ### 3. 请简要阐述AnimBP的动画状态机和Montage
-  
+
+- 他们分别适用在什么情景？
 - 哪一个更适合用在做近战攻击?
 - 如果实现一个上下肢分离的换子弹动画(边跑步，边换弹)，应该怎么做？
 - 怎么创建根骨骼动画节点，以方便在代码里调用？
@@ -71,6 +72,9 @@ BlueprintImplementableEvent只能在蓝图实现，常常与BlueprintCallable相
 
 [![pPq92NV.png](https://z1.ax1x.com/2023/09/29/pPq92NV.png)](https://imgse.com/i/pPq92NV)
 
+#### 哪一个更适合用在做近战攻击?
+
+Montage
 
 #### 如果实现一个上下肢分离的换子弹动画(边跑步，边换弹)，应该怎么做？
 
@@ -209,6 +213,91 @@ Event有点像函数，它是执行一个网络的开端。脚本就是每个蓝
 点那个加号。
 
 ### 11. 什么是蓝图接口？请提供一个使用蓝图接口的示例。
+
+首先接口是给不同类提供相同的函数，但是可以有不同的实现。在蓝图Interface里只能有函数。本案例来源于官方案例Cropout。
+
+定义蓝图接口
+
+![Interface](./images/BPI_GI.png)
+
+添加需要实现的实现蓝图接口
+
+![Interface](./images/BP_GI.png)
+
+在蓝图里实现接口。
+
+![Interface](./images/ImplementInterface.png)
+
+### 12. 如何在虚幻引擎蓝图中实现条件分支？请提供一个示例。
+
+![Branch](./images/branch.png)
+
+### 13. 你如何在蓝图中实现循环结构？请提供一个示例。
+
+![Loop](./images/loop.png)
+
+### 14. 请解释虚幻引擎蓝图中的事件触发器是什么以及如何使用它们。
+当一个物体走进一个触发器时，就会触发一个自定义函数来达到一定的效果。
+
+![TriggerEvent](./images/triggerBox.png)
+
+### 15. 能否简要解释虚幻引擎蓝图中的状态机，并提供一个实际用例？
+
+状态机（State Machines） 通过图形化方式将骨架网格体的动画拆分为一系列状态。然后按照 转换规则 管理这些状态，转换规则可控制从一个状态混合到另一个状态。状态机大大简化了骨架网格体动画的设计流程，可以创建一张控制图来轻松控制各个角色在各动画之间运动方式，无需创建复杂的蓝图网。用途是动画过渡。和第三问一致。
+
+### 16. 如何在蓝图中实现网络功能，以支持多人游戏？请提供一个简单的示例。
+
+这个问题太宽泛了。请看我的[知乎文章](https://zhuanlan.zhihu.com/p/610252998)。
+
+### 17. 如何处理虚幻引擎蓝图中的输入事件，例如键盘按键或鼠标点击？
+
+在虚幻5后，输入变成了Enhanced input。具体触发流程如图下所示。
+
+![EnhancedInput](./images/EnhancedInput.png)
+
+### 18. 你是否了解虚幻引擎的蓝图通信机制？请解释并提供一个示例。
+
+#### 对象引用
+
+![ObjectReference](./images/ObjectReference.png)
+
+#### 类型转换
+
+![Casting](./images/Casting.png)
+
+#### 蓝图接口
+
+见第11问
+
+#### Event Dispatcher
+
+一种委派（delegate）。比如在当你打开一个UI控件的时候，想让Button disabled，关掉的时候enabled。这时候你就可以用一个Event Dispatch完成父UI和子UI之间的信息交流。
+
+### 19. 如何在虚幻引擎蓝图中实现粒子效果或特效？
+
+Niagara
+
+### 20. 你能解释虚幻引擎蓝图中的延迟节点，并提供一个用例吗？
+
+![Delay](./images/Delay.png)
+
+UI中回血可以用delay来达到先快速达到灰色进度条，然后再慢慢回血。当然可以不用delay来实现。
+
+### 21. 你如何调试虚幻引擎蓝图中的问题？
+
+加断点
+![Breakpoint](./images/breakpoint.png)
+
+### 22. 请解释虚幻引擎的Garbage Collection（垃圾回收）是什么，以及如何避免或优化GC的影响？
+
+
+
+
+
+
+
+
+
 
 
 

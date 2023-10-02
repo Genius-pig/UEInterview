@@ -1,11 +1,17 @@
 # C++和客户端
 
+这个使用的Demo例子是：
+
+* [Aura](https://github.com/Genius-pig/Aura)
+* [UEInterviewDemo](https://github.com/Genius-pig/UEInterviewDemo)
+* Cropout官方
+
 ### 1. 使用C++创建一个继承自AActor的枪支类，在这个类中，创建两个组件:骨骼模型组件，粒子组件。他们分别作为枪支外形和火舌
 - 请分别写出这两个组件的声明和创建过程。
 - 满足声明的宏标记，要求骨骼模型组件可在蓝图中被默认定义，粒子组件任何时候可以被定义。
 - 实现中，骨骼模型作为root组件节点，粒子组件挂载到根骨骼模型上。
 
-关于EditDefaultOnly和EditAnywhere的区别，请看[视频](https://www.youtube.com/watch?v=arCwPQEDsmI)。一句话概括就是EditAnyWhere既可以在编辑器里更改，也可以在被实例化的时候更改（比如你把你定义的Actor拖拽到World上运行）。请看[UEInterviewDemo]()里的Contents/Weapons/ShortGun。
+关于EditDefaultOnly和EditAnywhere的区别，请看[视频](https://www.youtube.com/watch?v=arCwPQEDsmI)。一句话概括就是EditAnyWhere既可以在编辑器里更改，也可以在被实例化的时候更改（比如你把你定义的Actor拖拽到World上运行）。请看[UEInterviewDemo](https://github.com/Genius-pig/UEInterviewDemo)里的Contents/Weapons/ShortGun。
 
 ```c++
 	UPROPERTY(EditDefaultsOnly)
@@ -289,6 +295,90 @@ UI中回血可以用delay来达到先快速达到灰色进度条，然后再慢�
 ![Breakpoint](./images/breakpoint.png)
 
 ### 22. 请解释虚幻引擎的Garbage Collection（垃圾回收）是什么，以及如何避免或优化GC的影响？
+
+UE采用了标记-清扫的垃圾回收方式，是一种经典的垃圾回收方式。一次垃圾回收分为两个阶段。第一阶段从一个根集合出发，遍历所有可达对象，遍历完成后就能标记出可达对象和不可达对象了，这个阶段会在一帧内完成。第二阶段会渐进式的清理这些不可达对象，因为不可达的对象将永远不能被访问到，所以可以分帧清理它们，避免一下子清理很多 UObject，比如 map 卸载时，发生明显的卡顿。
+
+垃圾回收是常见的内存自动管理，就是当一个变量没有用的时候，系统就会自动回收它。垃圾回收在C++里是没有的，但是在其他语言像java，c#，python中是十分常见的。
+
+在成员变量中加`UPROPERTY()`就可以避免内存回收。用`MarkAsGarbage()`可以把`UPROPERTY()`成员变量标记为可以内存回收。具体看这个[视频](https://www.youtube.com/watch?v=fYktCdC_4IM)。在UEInterviewDemo也有。
+
+### 23. 你能详细解释虚幻引擎的TArray和TMap容器类，并说明何时使用它们以及它们的性能特性？
+
+#### TArray
+
+是UE中最常用的容器类，负责同类型其他对象（称为"元素"）序列的所有权和组织。由于TArray是一个序列，其元素的排序定义明确，其函数用于确定性地操纵此类对象及其顺序。插入删除的复杂度是O(1)~O(n)。
+
+在需要顺序数组的时候使用。
+
+#### TMap
+
+TMap是用基于数组的哈希表实现的，查询效率高，添加、删除效率低，查询的时间复杂度是O(1)。TMap的排序采用的快速排序，时间复杂度为O(nlogn)。
+
+|  | 数据结构 | 查询时间复杂度 | 优点 | 缺点 |
+| -----| ---- | ---- | ---- | ---- |
+| map | 红黑树 | O(logn) | 内部自动排序，查询、添加、删除效率相同 | 空间占用较大 |
+| unordered_map | 哈希表 | 	O(1) | 	查询效率高 | 内部元素无序杂乱添加、删除效率低 |
+| TMap | 哈希表 | 	O(1) | 	查询效率高 | 内部元素无序杂乱添加、删除效率低 |
+
+在需要键值对的时候使用。
+
+### 24. 什么是虚幻引擎的蓝图扩展（Blueprint Native Events）？请提供一个示例，说明如何在C++中扩展蓝图功能。
+
+与第二题的第三个小问一样。
+
+### 25. 请描述虚幻引擎中的Actor生命周期，包括BeginPlay、Tick、EndPlay等事件的触发时机和作用。
+
+Actor从BeginPlay开始，Tick每一帧运行，到EndPlay结束。
+
+了解这个问题，我们首先在打上三个断点。从IDE上看调用栈。
+
+下图为BeginPlay调用栈。你在点击Editor的开始按钮的时候，调用一次BeginPlay函数。
+
+![BeginPlay](./images/BeginPlay.png)
+
+下图为Tick调用栈。你在点击Editor的开始按钮的时候后，每一帧都会调用Tick函数。
+
+![Tick](./images/Tick.png)
+
+下图为EndPlay调用栈。你在点击Editor的结束按钮的时候后，调用一次End函数。
+
+![End](./images/EndPlay.png)
+
+### 26. 如何在虚幻引擎中实现自定义的AI行为和决策树
+
+#### 自定义Service
+
+可以继承自`UBTService_BlueprintBase`。在`TickNode`写自己的逻辑，并可以修改Blackboard的值。
+
+```C++
+	virtual void TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	FBlackboardKeySelector TargetToFollowSelector;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	FBlackboardKeySelector DistanceToTargetSelector;
+```
+
+#### 自定义Task
+
+可以继承自`UBTTask_BlueprintBase`。在`ExecuteTask`写自己的逻辑。
+
+```c++
+virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
+```
+
+### 27. 你能解释虚幻引擎的引擎子系统（Engine Subsystems）是什么，以及如何创建自定义的子系统？
+
+子系统是比设计模式单例模式更加深刻的延伸。
+
+
+
+
+
+
+
+
 
 
 

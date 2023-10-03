@@ -370,7 +370,41 @@ virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8
 
 ### 27. 你能解释虚幻引擎的引擎子系统（Engine Subsystems）是什么，以及如何创建自定义的子系统？
 
-子系统是比设计模式单例模式更加深刻的延伸。
+子系统是比设计模式单例模式更加深刻的延伸。虚幻有一些它称之为子系统的东西，可以用来创建全局可访问的模块，这些模块具有明确定义的生命周期。子系统的生存期将与其父子系统的生存期相匹配。 有5个不同的父类可供选择 。比如你继承一个UEngineSubsystem，详情请看[这篇](https://zhuanlan.zhihu.com/p/616324045)。
+
+| Subsystem | Parent Class | Lifetime | 
+| -----| ---- | ---- |
+| Engine | UEngineSubsystem | 编辑器和游戏都存在 |
+| Editor | UEditorSubsystem | 当启动编辑器时 |	
+| GameInstance | UGameInstanceSubsystem | 从游戏开始到游戏结束 | 
+| LocalPlayer | ULocalPlayerSubsystem | 和ULocalPlayer生命周期一样，在level之间1穿梭 |
+| World | UWorldSubsystem | 和UWorld生命周期一样，每一个level都有效 |
+
+### 28. 什么是虚幻引擎中的反射系统，以及它如何与C++代码交互？
+
+参考：
+
+* [Unreal Property System (Reflection)](https://www.unrealengine.com/en-US/blog/unreal-property-system-reflection)
+* [Unreal Engine Reflection System](https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/)
+
+#### 反射在java
+
+Java的反射机制是指在程序的运行状态中，可以构造任意一个类的对象，可以了解任意一个对象所属的类，可以了解任意一个类的成员变量和方法，可以调用任意一个对象的属性和方法。这种动态获取程序信息以及动态调用对象的功能称为Java语言的反射机制。
+
+其实Java的反射和虚幻的反射是十分相似的，无非就是程序在运行时评估自己。在虚幻中，你可以给程序加上类似`UClass`的宏，所以你就可以在Editor编辑它。
+
+#### 如何和C++交互
+
+* 虚幻的基础对象是`UObject`，为每个`Actor`和`Object`提供模板。
+* 你可以用宏`UClass`去标记继承自`UObject`的类，这样的话[UObject handling system](https://docs.unrealengine.com/5.0/en-US/unreal-object-handling-in-unreal-engine/)就可以意识到右这个类。更多[宏](https://docs.unrealengine.com/5.0/en-US/metadata-specifiers-in-unreal-engine/)，如`UEnum`等。
+* TSubclassOf是一个模板类，为Unreal Engine提供了UClass类型安全性。比如我声明了一个UAuraUserWidget类型的TSubclassOf。如果我写一个蓝图类继承这个含有这个OverlayWidgetClass的C++类，我就只能选择UAuraUserWidget的子类或者本类。参考[代码](https://github.com/Genius-pig/Aura/blob/master/Source/Aura/Public/UI/HUD/AuraHUD.h)。
+
+### 29. 如何在虚幻引擎中创建自定义的工具面板（Editor Utility Widgets）？
+
+
+
+
+
 
 
 

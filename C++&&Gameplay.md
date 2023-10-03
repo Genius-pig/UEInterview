@@ -1,6 +1,6 @@
 # C++和客户端
 
-这个使用的Demo例子是：
+这个文档使用的Demo例子是：
 
 * [Aura](https://github.com/Genius-pig/Aura)
 * [UEInterviewDemo](https://github.com/Genius-pig/UEInterviewDemo)
@@ -400,6 +400,26 @@ Java的反射机制是指在程序的运行状态中，可以构造任意一个�
 * TSubclassOf是一个模板类，为Unreal Engine提供了UClass类型安全性。比如我声明了一个UAuraUserWidget类型的TSubclassOf。如果我写一个蓝图类继承这个含有这个OverlayWidgetClass的C++类，我就只能选择UAuraUserWidget的子类或者本类。参考[代码](https://github.com/Genius-pig/Aura/blob/master/Source/Aura/Public/UI/HUD/AuraHUD.h)。
 
 ### 29. 如何在虚幻引擎中创建自定义的工具面板（Editor Utility Widgets）？
+
+
+![EditorUtilityWidgets](./images/EditorUtilityWidget.png)
+
+### 30. 你有使用过虚幻引擎的AI感知系统吗？详细说说
+
+
+
+### 31. 如何在虚幻引擎中实现自定义的多边形碰撞检测，而不使用物理引擎？
+
+在这里加Collision。
+
+![AddCollision](./images/AddCollision.png)
+
+可以自定义简单多边形或者其他形状的碰撞检测。
+
+![ModifyCollisionBox](./images/ModifyCollision.png)
+
+### 32. 能否解释虚幻引擎的SaveGame系统，并提供一个实际用例？
+
 
 
 

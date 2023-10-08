@@ -420,6 +420,14 @@ Java的反射机制是指在程序的运行状态中，可以构造任意一个�
 
 ### 32. 能否解释虚幻引擎的SaveGame系统，并提供一个实际用例？
 
+### 35. 请描述虚幻引擎的渲染管线（Rendering Pipeline）中的主要阶段和它们的作用。
+
+### 36. 如何在虚幻引擎中实现自定义的渲染通道（Rendering Pass）或后处理效果？
+
+[参考](https://unrealartoptimization.github.io/book/profiling/passes/)
+
+
+
 
 
 

@@ -422,9 +422,34 @@ Java的反射机制是指在程序的运行状态中，可以构造任意一个�
 
 ### 35. 请描述虚幻引擎的渲染管线（Rendering Pipeline）中的主要阶段和它们的作用。
 
+https://zhuanlan.zhihu.com/p/137780634
+
+Vertex Shader → Tessellation → Geometry Shader → Rasterization → Fragment Shader
+
+做个简单总结：Vertex shader做的就是把物体进行空间变换，变换到摄像机能看到的位置，添加光照信息（那个切线空间插值？）
+
+Tessellation做细分的，贴图置换，其中Bump和Displacement贴图就是在这里算的？
+
+Geometry Shader增加新图元，应用为LOD。
+
+Rasterization 光栅化我觉得是把投射到屏幕上的点用片元表示。
+
+Fragment Shader （Pixel Shader）为每个片元计算颜色。对法线纹理采样后，直接进行光照计算。
+
+
 ### 36. 如何在虚幻引擎中实现自定义的渲染通道（Rendering Pass）或后处理效果？
 
 [参考](https://unrealartoptimization.github.io/book/profiling/passes/)
+
+### 37. 切线空间有什么用
+
+https://www.zhihu.com/question/23706933
+
+https://zhuanlan.zhihu.com/p/139593847
+
+自己做一个简单总结，法线贴图是由UV纹理和坐标计算而来，UV和切线空间（BT）并不重合。切线空间的用处我感觉就是和UV强相关，所以切线空间最大作用就是生成法线贴图。
+
+
 
 
 

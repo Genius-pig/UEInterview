@@ -453,7 +453,7 @@ https://zhuanlan.zhihu.com/p/139593847
 
 https://zhuanlan.zhihu.com/p/526034602
 
-左值就是取地址值，
+左值就是如果你用取址符取到地址基本就是左值，纯右值就是无法取址
 
 
 

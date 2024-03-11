@@ -1,5 +1,11 @@
 # C++和客户端
 
+## 我找到的面试帖子
+
+https://www.nowcoder.com/discuss/389861702270038016
+https://zhuanlan.zhihu.com/p/109189205
+https://zhuanlan.zhihu.com/p/675995488
+
 这个文档使用的Demo例子是：
 
 * [Aura](https://github.com/Genius-pig/Aura)
@@ -449,11 +455,16 @@ https://zhuanlan.zhihu.com/p/139593847
 
 自己做一个简单总结，法线贴图是由UV纹理和坐标计算而来，UV和切线空间（BT）并不重合。切线空间的用处我感觉就是和UV强相关，所以切线空间最大作用就是生成法线贴图。
 
-### 38. 左右值
+### 38. 怎么理解左右值
 
 https://zhuanlan.zhihu.com/p/526034602
 
-左值就是如果你用取址符取到地址基本就是左值，纯右值就是无法取址
+左值就是如果你用取址符取到地址基本就是左值，纯右值就是无法取址。这个比较复杂，我只是简单概述一下。
+
+### 39. 怎么理解虚幻中的多线程
+
+https://forums.unrealengine.com/t/multithreading-and-performance-in-unreal/1216417
+
 
 
 

@@ -465,6 +465,21 @@ https://zhuanlan.zhihu.com/p/526034602
 
 https://forums.unrealengine.com/t/multithreading-and-performance-in-unreal/1216417
 
+### 40. 进程和线程的区别
+
+https://www.bilibili.com/video/BV1Wr4y1P7Yr?vd_source=dd0693a0880c6b173c9281441a6d9fc1
+
+一个进程包含一个或多个线程。线程贡献地址空间、全局变量、打开的文件。
+
+每个线程都有自己的程序计数器（Program Counter），寄存器，堆栈。
+
+![](./images/微信截图_20240311200707.png)
+
+### 41. TCP协议
+
+![](./images/10-2.png)
+
+
 
 
 

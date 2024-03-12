@@ -479,6 +479,11 @@ https://www.bilibili.com/video/BV1Wr4y1P7Yr?vd_source=dd0693a0880c6b173c9281441a
 
 ![](./images/10-2.png)
 
+### 42. 如何理解BPR流程
+
+这个我感觉比较好理解，原核生物都能理解。
+https://zhuanlan.zhihu.com/p/349854976
+
 
 
 

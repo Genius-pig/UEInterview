@@ -484,6 +484,15 @@ https://www.bilibili.com/video/BV1Wr4y1P7Yr?vd_source=dd0693a0880c6b173c9281441a
 这个我感觉比较好理解，原核生物都能理解。
 https://zhuanlan.zhihu.com/p/349854976
 
+### 43. c++中的代码分区
+
+### 44. 网络
+
+### 45. 深拷贝和浅拷贝
+
+### 46. 智能指针
+
+
 
 
 

@@ -489,7 +489,7 @@ https://blog.csdn.net/karaxiaoyu/article/details/139016521
 
 ### 44. 网络
 
-一般来说虚幻网络使用的是UDP，但是可以用UFunction等标记
+一般来说虚幻网络使用的是UDP，但是可以用reliable等标记是否为可靠传输。
 
 ### 45. 深拷贝和浅拷贝
 

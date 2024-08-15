@@ -484,13 +484,37 @@ https://www.bilibili.com/video/BV1Wr4y1P7Yr?vd_source=dd0693a0880c6b173c9281441a
 这个我感觉比较好理解，原核生物都能理解。
 https://zhuanlan.zhihu.com/p/349854976
 
-### 43. c++中的代码分区
+### 43. C语言：内存分配
+https://blog.csdn.net/karaxiaoyu/article/details/139016521
 
 ### 44. 网络
+
+一般来说虚幻网络使用的是UDP，但是可以用UFunction等标记
 
 ### 45. 深拷贝和浅拷贝
 
 ### 46. 智能指针
+
+https://blog.csdn.net/weixin_43158544/article/details/136999834
+
+### 47. 多态
+
+https://zhuanlan.zhihu.com/p/584998508
+
+### 48. vector实现（重点是如何扩容）
+vector在创建的时候实际空间（capacity）要比声明空间（size）大。
+
+另外需要指明的是，当 vector 的大小和容量相等（size==capacity）也就是满载时，如果再向其添加元素，那么 vector 就需要扩容。vector 容器扩容的过程需要经历以下 3 步：
+* 完全弃用现有的内存空间，重新申请更大的内存空间；
+* 将旧内存空间中的数据，按原有顺序移动到新的内存空间中；
+* 最后将旧的内存空间释放。
+https://c.biancheng.net/view/6901.html
+
+### 49. hashmap的实现
+
+### 50. 
+
+
 
 
 

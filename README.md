@@ -469,7 +469,7 @@ https://forums.unrealengine.com/t/multithreading-and-performance-in-unreal/12164
 
 https://www.bilibili.com/video/BV1Wr4y1P7Yr?vd_source=dd0693a0880c6b173c9281441a6d9fc1
 
-一个进程包含一个或多个线程。线程贡献地址空间、全局变量、打开的文件。
+一个进程包含一个或多个线程。进程贡献地址空间、全局变量、打开的文件。
 
 每个线程都有自己的程序计数器（Program Counter），寄存器，堆栈。
 
@@ -510,18 +510,30 @@ vector在创建的时候实际空间（capacity）要比声明空间（size）�
 * 最后将旧的内存空间释放。
 https://c.biancheng.net/view/6901.html
 
-### 49. hashmap的实现
+### 49. hashmap(unordered_map)的实现
+
+https://github.com/CharonChui/AndroidNote/blob/master/JavaKnowledge/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.md
 
 ### 50. 左值和右值的区别
 
 左值和右值最大的区别就是能否取地址，一般来说能取地址的就是左值，不能就是右值。字符串常量也是左值。一个经典的例子就是“i++ ++i”，前者是右值，后者是左值。前者是创建了个临时变量，后者是自加返回。
 
-### 59. 指针为什么危险？
+```C++
+const int& a = 5; //有了const之后， a即可以接受左值，又可以接受右值， 这就是为什么函数参数很多都是const int&之类。
+```
+### 51. 指针为什么危险？
 
 指针可以运算，int *a = b， a++指向的是啥，不知道，所以这里就很危险。
 
+### 52. 右值引用
 
+右值引用可以延长右值的生命周期。
 
+```C++
+int &&a = 5;
+```
+下面的例子使用了右值引用就减少了拷贝。
+https://github.com/Genius-pig/src/blob/master/6-3.cpp
 
 
 

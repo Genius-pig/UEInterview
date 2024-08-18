@@ -535,6 +535,13 @@ int &&a = 5;
 下面的例子使用了右值引用就减少了拷贝。
 https://github.com/Genius-pig/src/blob/master/6-3.cpp
 
+### 53. 内联函数
+
+### 54. 虚幻回收原理
+
+### 55. 虚函数和纯虚函数
+
+
 
 
 
